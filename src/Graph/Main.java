@@ -1,5 +1,6 @@
 package Graph;
 import Algorithms.BFS;
+import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Graph graph = new Graph(5, false);
@@ -23,6 +24,7 @@ public class Main {
         graph.printAdjacencyList();
         graph.printAdjacencyMatrix();
 
-        BFS.traverse(graph,0);
+        List<Integer> l = BFS.getBFS(graph,0);
+        System.out.println(l);
     }
 }
