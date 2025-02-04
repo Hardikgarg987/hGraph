@@ -23,8 +23,8 @@ public class Main {
         // Print the graphs
         graph.printAdjacencyList();
         graph.printAdjacencyMatrix();
-
-        List<Integer> l = BFS.getBFS(graph,0);
+        BFS.BFS(graph,0,true);
+        List<Integer> l = BFS.BFS(graph,0);
         System.out.println(l);
     }
 }
