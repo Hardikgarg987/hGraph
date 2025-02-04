@@ -1,23 +1,21 @@
 public class Main {
     public static void main(String[] args) {
-        // Create a graph with 5 vertices, directed
-        Graph graph = new Graph(5, true);
+        Graph graph = new Graph(5, false);
 
-        // Add edges using adjacency list
+        // Unweighted edges (default weight = 1)
         graph.addEdgeList(0, 1);
-        graph.addEdgeList(0, 4);
         graph.addEdgeList(1, 2);
-        graph.addEdgeList(1, 3);
-        graph.addEdgeList(1, 4);
+        graph.addEdgeList(2, 3);
 
-        // Add edges using adjacency matrix
         graph.addEdgeMatrix(0, 1);
-        graph.addEdgeMatrix(0, 4);
         graph.addEdgeMatrix(1, 2);
-        graph.addEdgeMatrix(1, 3);
-        graph.addEdgeMatrix(1, 4);
+        graph.addEdgeMatrix(2, 3);
 
-        // Print both representations
+        // Weighted edges
+        graph.addEdgeList(3, 4, 7);
+        graph.addEdgeMatrix(3, 4, 7);
+
+        // Print the graphs
         graph.printAdjacencyList();
         graph.printAdjacencyMatrix();
     }
