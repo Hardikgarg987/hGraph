@@ -7,18 +7,10 @@ public class Graph {
     private boolean isDirected;
 
     //For adjacency list
-    private Map<Integer, List<Pair>> adjacencyList;
+    private Map<Integer, Map<Integer, Integer>> adjacencyList;
 
     //For adjacency matrix
     private int[][] adjacencyMatrix;
-
-    class Pair {
-        int node, weight;
-        public Pair(int node, int weight){
-            this.node = node;
-            this.weight = weight;
-        }
-    }
 
     //Constructor
     public Graph(int vertices, boolean isDirected) {
@@ -28,7 +20,7 @@ public class Graph {
         //Initialize adjacency list
         adjacencyList = new HashMap<>();
         for(int i = 0;i<vertices;i++){
-            adjacencyList.put(i, new ArrayList<>());
+            adjacencyList.put(i, new HashMap<>());
         }
 
         //Initialize adjacency matrix
@@ -55,9 +47,9 @@ public class Graph {
         }
 
         //add edge to adjacency list
-        adjacencyList.get(src).add(new Pair(dest, weight));
+        adjacencyList.get(src).put(dest, weight);
         if(!isDirected) {
-            adjacencyList.get(dest).add(new Pair(src, weight));
+            adjacencyList.get(dest).put(src, weight);
         }
     
         //add edge to adjacency matrix
@@ -69,23 +61,23 @@ public class Graph {
 
     // Print adjacency list
     public void printAdjacencyList() {
-        System.out.println("Adjacency List : ");
-        for(int node : adjacencyList.keySet()) {
-            System.out.println(node + " -> ");
-            for(Pair neighbor : adjacencyList.get(node)){
-                System.out.print("(" + neighbor.node + ", " + neighbor.weight + ") ");
+        System.out.println("Weighted Adjacency List:");
+        for (var entry : adjacencyList.entrySet()) {
+            System.out.print(entry.getKey() + " -> ");
+            for (var neighbor : entry.getValue().entrySet()) {
+                System.out.print("(" + neighbor.getKey() + ", " + neighbor.getValue() + ") ");
             }
             System.out.println();
         }
     }
 
-    // Print adjacency matrix
+    //Print adjacency Matrix
     public void printAdjacencyMatrix() {
-        System.out.println("Adjacency Matrix:");
+        System.out.println("Weighted Adjacency Matrix:");
         for (int i = 0; i < vertices; i++) {
             for (int j = 0; j < vertices; j++) {
                 if (adjacencyMatrix[i][j] == Integer.MAX_VALUE)
-                    System.out.print(0 + " ");
+                    System.out.print("INF ");
                 else
                     System.out.print(adjacencyMatrix[i][j] + " ");
             }
