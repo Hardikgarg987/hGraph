@@ -33,34 +33,34 @@ public class Graph {
 
         //Initialize adjacency matrix
         adjacencyMatrix = new int[vertices][vertices];
-    }
 
-    //Add edge for weighted adjacency list( default weight = 1 )
-    public void addEdgeList(int src, int dest) {
-        adjacencyList.get(src).add(new Pair(dest, 1));
-        if(!isDirected) {
-            adjacencyList.get(dest).add(new Pair(src, 1));
+        //Initialize adjacency matrix with a large value (infinity for non-existing edges)
+        for (int i = 0; i < vertices; i++) {
+            Arrays.fill(adjacencyMatrix[i], Integer.MAX_VALUE);
+            adjacencyMatrix[i][i] = 0; // Distance to itself is 0
         }
     }
 
-    // Add edge (Adjacency List)
-    public void addEdgeList(int src,int dest, int weight){
+    //Add unweighted edge( default weight = 1 )
+    public void addEdge(int src, int dest) {
+        addEdge(src,dest,1);
+    }
+
+    // Add weighted edge
+    public void addEdge(int src,int dest, int weight){
+
+        //chec if the source and destinition are in the correct range
+        if (src >= vertices || dest >= vertices || src < 0 || dest < 0) {
+            throw new IllegalArgumentException("Invalid node index");
+        }
+
+        //add edge to adjacency list
         adjacencyList.get(src).add(new Pair(dest, weight));
         if(!isDirected) {
             adjacencyList.get(dest).add(new Pair(src, weight));
         }
-    }
-
-    //Add edge for weighted Adjacency Matrix (defualt weight = 1)
-    public void addEdgeMatrix(int src, int dest) {
-        adjacencyMatrix[src][dest] = 1;
-        if(!isDirected) {
-            adjacencyMatrix[dest][src] = 1;
-        }
-    }
-
-    // Add edge (Adjacency Matrix)
-    public void addEdgeMatrix(int src, int dest, int weight) {
+    
+        //add edge to adjacency matrix
         adjacencyMatrix[src][dest] = weight;
         if(!isDirected) {
             adjacencyMatrix[dest][src] = weight;
@@ -85,7 +85,7 @@ public class Graph {
         for (int i = 0; i < vertices; i++) {
             for (int j = 0; j < vertices; j++) {
                 if (adjacencyMatrix[i][j] == Integer.MAX_VALUE)
-                    System.out.print("INF ");
+                    System.out.print(0 + " ");
                 else
                     System.out.print(adjacencyMatrix[i][j] + " ");
             }
