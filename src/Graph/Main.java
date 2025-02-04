@@ -1,11 +1,15 @@
+package Graph;
+import Algorithms.BFS;
 public class Main {
     public static void main(String[] args) {
         Graph graph = new Graph(5, false);
 
         // Unweighted edges (default weight = 1)
         graph.addEdge(0, 1);
+        graph.addEdge(0,4,5);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
+        graph.addEdge(5,4, 2);
 
         graph.addEdge(0, 1);
         graph.addEdge(1, 2);
@@ -18,5 +22,7 @@ public class Main {
         // Print the graphs
         graph.printAdjacencyList();
         graph.printAdjacencyMatrix();
+
+        BFS.traverse(graph,0);
     }
 }
