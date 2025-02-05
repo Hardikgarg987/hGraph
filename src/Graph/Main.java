@@ -1,5 +1,7 @@
 package Graph;
 import Algorithms.BFS;
+import Algorithms.DFS;
+
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +25,17 @@ public class Main {
         // Print the graphs
         graph.printAdjacencyList();
         graph.printAdjacencyMatrix();
-        BFS.BFS(graph,0,true);
-        List<Integer> l = BFS.BFS(graph,0);
+
+
+        BFS.bfs(graph,0,true);
+        List<Integer> l = BFS.bfs(graph,0);
         System.out.println(l);
+
+        System.out.println("DFS Traversal : ");
+        List<Integer> l2 = DFS.dfs(graph, 0,false);
+
+
+        System.out.println(l2);System.out.println("DFS Traversal : ");
+        DFS.dfs(graph, 0,true);
     }
 }

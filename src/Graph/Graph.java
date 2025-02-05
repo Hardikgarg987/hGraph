@@ -2,6 +2,8 @@
 package Graph;
 
 import java.util.*;
+import Algorithms.BFS;
+import Algorithms.DFS;
 
 public class Graph {
     //Number of vertices
@@ -94,6 +96,22 @@ public class Graph {
 
     public int[][] getMatrix() {
         return adjacencyMatrix;
+    }
+
+    public List bfs(int start){
+        return BFS.bfs(this, start);
+    }
+
+    public void bfs(int start, boolean print){
+        BFS.bfs(this, start, print);
+    }
+
+    public List dfs(int start){
+        return DFS.dfs(this, start);
+    }
+
+    public List dfs(int start, boolean print) {
+       return DFS.dfs(this, start, print);
     }
 }
 
