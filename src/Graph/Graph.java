@@ -98,19 +98,19 @@ public class Graph {
         return adjacencyMatrix;
     }
 
-    public List bfs(int start){
+    public List<Integer> bfs(int start){
         return BFS.bfs(this, start);
     }
 
-    public void bfs(int start, boolean print){
-        BFS.bfs(this, start, print);
+    public List<Integer> bfs(int start, boolean print){
+        return BFS.bfs(this, start, print);
     }
 
-    public List dfs(int start){
+    public List<Integer> dfs(int start){
         return DFS.dfs(this, start);
     }
 
-    public List dfs(int start, boolean print) {
+    public List<Integer> dfs(int start, boolean print) {
        return DFS.dfs(this, start, print);
     }
 }
