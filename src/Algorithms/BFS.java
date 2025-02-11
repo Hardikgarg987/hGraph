@@ -17,7 +17,6 @@ public class BFS {
         visited[start] = true;
         bfs.add(start);
 
-        System.out.println("BFS Traversal:");
         while (!queue.isEmpty()) {
             int node = queue.poll();
 

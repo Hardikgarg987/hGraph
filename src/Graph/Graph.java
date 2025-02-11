@@ -4,6 +4,7 @@ package Graph;
 import java.util.*;
 import Algorithms.BFS;
 import Algorithms.DFS;
+import Algorithms.Dijkstra;
 
 public class Graph {
     //Number of vertices
@@ -24,15 +25,15 @@ public class Graph {
 
         //Initialize adjacency list
         adjacencyList = new HashMap<>();
-        for(int i = 0;i<vertices + 1;i++){
+        for(int i = 0;i<vertices;i++){
             adjacencyList.put(i, new HashMap<>());
         }
 
         //Initialize adjacency matrix
-        adjacencyMatrix = new int[vertices + 1][vertices + 1];
+        adjacencyMatrix = new int[vertices][vertices];
 
         //Initialize adjacency matrix with a large value (infinity for non-existing edges)
-        for (int i = 0; i < vertices + 1; i++) {
+        for (int i = 0; i < vertices; i++) {
             Arrays.fill(adjacencyMatrix[i], Integer.MAX_VALUE);
             adjacencyMatrix[i][i] = 0; // Distance to itself is 0
         }
@@ -47,7 +48,7 @@ public class Graph {
     public void addEdge(int src,int dest, int weight){
 
         //chec if the source and destinition are in the correct range
-        if (src >= vertices+1 || dest >= vertices+1 || src < 0 || dest < 0) {
+        if (src >= vertices || dest >= vertices || src < 0 || dest < 0) {
             throw new IllegalArgumentException("Invalid node index");
         }
 
@@ -79,8 +80,8 @@ public class Graph {
     //Print adjacency Matrix
     public void printAdjacencyMatrix() {
         System.out.println("Weighted Adjacency Matrix:");
-        for (int i = 0; i < vertices+1; i++) {
-            for (int j = 0; j < vertices+1; j++) {
+        for (int i = 0; i < vertices; i++) {
+            for (int j = 0; j < vertices; j++) {
                 if (adjacencyMatrix[i][j] == Integer.MAX_VALUE)
                     System.out.print("0 ");
                 else
@@ -112,6 +113,15 @@ public class Graph {
 
     public List<Integer> dfs(int start, boolean print) {
        return DFS.dfs(this, start, print);
+    }
+
+    // Call Dijkstra from Graph
+    public int[] dijkstra(int start) {
+        return Dijkstra.dijkstra(this, start);
+    }
+
+    public void dijkstra(int start, boolean print) {
+        Dijkstra.dijkstra(this, start, print);
     }
 }
 
